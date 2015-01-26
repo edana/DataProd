@@ -1,23 +1,33 @@
 library(shiny)
-shinyUI(pageWithSidebar(
+shinyUI(
+    pageWithSidebar(
     headerPanel("Calculate your Body Mass Index (BMI)"),
+    
     sidebarPanel(
-        checkboxGroupInput("id2", "Select the units",
-                           c("SI" = "0",
-                             "English system" = "1")),
-        textInput(inputId="text1", label = "Enter your weight"),
-        textInput(inputId="text2", label = "Enter your height"),
-        actionButton("goButton", "Go!")
-        ),
-    mainPanel(
-        p('Input weight'),
-        textOutput('text1'),
-        p('Imput height'),
-        textOutput('text2'),
-        p('Your BMI'),
-        textOutput('text3'),
-        p('Your result'),
-        textOutput('text4')
-    )
+        checkboxInput("units", "Select for SI units", value = FALSE),
+        numericInput('weight', 'Enter your weight in pounds or kilograms', 
+                     130, min = 1, max = 500, step = 0.1),
+        numericInput('height', 'Enter your height in inches or meters', 
+                     63, min = 0.1, max = 300.0, step = 0.1),
+        submitButton('Submit')
+       ),
+    
+ mainPanel(
+        h3('Your results'),
+        h4('Input weight'),
+        verbatimTextOutput('weightOut'),
+        h4('Input height'),
+        verbatimTextOutput('heightOut'),
+        h4('Your BMI'),
+        verbatimTextOutput('bmi'),
+        p('The BMI result categorize the person as:'),
+        p('- underweight (BMI less than 18.5)'),
+        p('- normal weight (BMI between 18.5 & 24.9)'),
+        p('- overweight (BMI between 25.0 & 29.9)'),
+        p('- obese (BMI 30.0 and above)')
+        #p('Your result'),
+        #textOutput('text4')
+   )
 ))
+            
 

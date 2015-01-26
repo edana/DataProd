@@ -1,18 +1,14 @@
 library(shiny)
-x <<- x + 1
-y <<- 0
+calculateBMI <- function(weight,height,units) {
+    if(units == FALSE) (weight*703)/(height*height)
+    else weight/(height*height)
+}
 shinyServer(
     function(input, output) {
-        y <<- y + 1
-        output$text1 <- renderText({input$text1})
-        output$text2 <- renderText({input$text2})
-        
-        #bmi <<- as.numeric(input$text1)/as.numeric(input$text2)
-        output$text3 <- renderText({as.numeric(input$text1)/as.numeric(input$text2)})
-        #output$text4 <- renderText(bmi)
-        output$text5 <- renderText({
-            input$goButton
-            isolate(paste(input$text1, input$text2))
-        })
+       output$weightOut <- renderPrint({input$weight})
+       output$heightOut <- renderPrint({input$height})
+       output$bmi <- renderPrint({calculateBMI(input$weight,
+                                               input$height, 
+                                               as.numeric(input$units))})
     }
 )
