@@ -10,5 +10,11 @@ The BMI result categorize the person as:
 - overweight (BMI between 25.0 & 29.9)
 - obese (BMI 30.0 and above)
 
+## Slidify presentation
+
+The files needed to produce the presentation are in this same repository but I don't know how to share the proper html file. 
+
+So you can use this link <https://dl.dropboxusercontent.com/u/4759999/DataProd/index.html> to see the presentation, the same files where loades in the Dropbox public folder.
+
 ## References
 <http://www.whathealth.com/bmi/formula.html>
